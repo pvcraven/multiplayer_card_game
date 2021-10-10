@@ -1,7 +1,11 @@
 import socket
+import logging
 
 from constants import *
 from communications_channel import CommunicationsChannel
+
+
+logging.basicConfig(level=logging.DEBUG)
 
 
 class Server:
@@ -13,6 +17,7 @@ class Server:
         self.my_ip_address = my_ip_address
         self.my_ip_port = my_ip_port
         self.my_socket = None
+        self.channels = []
 
     def start_listening(self):
         self.my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -37,9 +42,14 @@ class Server:
             communications_channel.my_ip_address = self.my_ip_address
             communications_channel.my_ip_port = self.my_ip_port
             communications_channel.current_state = CONNECTED
-            print("Client connected...")
+            self.channels.append(communications_channel)
+            logging.debug(f"Client {their_ip}:{their_port} connected...")
             return communications_channel
 
         except BlockingIOError:
             # There was no connection. Wait before checking again.
             return None
+
+    def broadcast(self, data):
+        for channel in self.channels:
+            channel.send_queue.put(data)
