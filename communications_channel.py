@@ -28,7 +28,7 @@ class CommunicationsChannel:
         self.send_queue = queue.Queue()
 
     def connect(self):
-        logging.debug("Connecting...")
+        logging.debug(f"Connecting {self.their_ip}:{self.their_port}...")
         # Create a socket for IPv4 (AF_INET), TCP stream (SOCK_STREAM)
         self.my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -51,6 +51,7 @@ class CommunicationsChannel:
 
                 # See if we have data
                 if len(data) > 0:
+                    logging.debug(f"Receiving data...")
                     # Decode the byte string to a normal string
                     data_string = data.decode("UTF-8")
                     decoded_data = json.loads(data_string)
@@ -73,3 +74,13 @@ class CommunicationsChannel:
             encoded_data = json.JSONEncoder().encode(data).encode('utf-8')
             self.connection.sendall(encoded_data)
             logging.debug(">>> Data sent")
+
+    def close(self):
+        logging.debug("--- Close connection requested.")
+        if self.connection:
+            logging.debug("--- Closing.")
+            self.connection.close()
+            logging.debug("--- Closed.")
+
+        self.connection = None
+        self.current_state = NO_CONNECTION

@@ -52,4 +52,5 @@ class Server:
 
     def broadcast(self, data):
         for channel in self.channels:
-            channel.send_queue.put(data)
+            if channel.current_state == CONNECTED:
+                channel.send_queue.put(data)
