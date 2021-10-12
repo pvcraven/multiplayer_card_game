@@ -2,8 +2,6 @@ import arcade
 import time
 import logging
 
-from communications_channel import CommunicationsChannel
-
 logging.basicConfig(level=logging.DEBUG)
 
 

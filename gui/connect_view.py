@@ -1,11 +1,8 @@
-import logging
-
 import arcade
 import arcade.gui
-import threading
 
-from game_view import GameView
-from communications_channel import CommunicationsChannel
+from gui.game_view import GameView
+from network.communications_channel import CommunicationsChannel
 
 
 class ConnectView(arcade.View):

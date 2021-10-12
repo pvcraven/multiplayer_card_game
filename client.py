@@ -1,6 +1,6 @@
 import arcade
-from connect_view import ConnectView
-from game_window import GameWindow
+from gui.connect_view import ConnectView
+from gui.game_window import GameWindow
 
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600

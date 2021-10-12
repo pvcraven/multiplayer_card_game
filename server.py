@@ -1,56 +1,59 @@
-import socket
+import time
 import logging
 
-from constants import *
-from communications_channel import CommunicationsChannel
-
+from server.channel_server import ChannelServer
 
 logging.basicConfig(level=logging.DEBUG)
 
 
-class Server:
+class UserConnection:
+    def __init__(self):
+        self.channel = None
+        self.user_name = None
 
-    def __init__(self,
-                 my_ip_address=None,
-                 my_ip_port=None):
 
-        self.my_ip_address = my_ip_address
-        self.my_ip_port = my_ip_port
-        self.my_socket = None
-        self.channels = []
+def server():
+    channel_server = ChannelServer(my_ip_address='127.0.0.1', my_ip_port=10000)
+    channel_server.start_listening()
+    user_connections = []
+    server_data = {"users": []}
 
-    def start_listening(self):
-        self.my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.my_socket.settimeout(0.0)
-        listen_to = (self.my_ip_address, self.my_ip_port)
-        self.my_socket.bind(listen_to)
-        self.my_socket.listen(2)
+    while True:
+        # Check for new connections
+        channel = channel_server.get_new_channel()
 
-    def get_new_channel(self):
+        if channel:
+            user_connection = UserConnection()
+            user_connection.channel = channel
+            user_connections.append(user_connection)
 
-        try:
-            # Get a connection, and the address that hooked up to us.
-            # The 'client address' is an array that has the IP and the port.
-            connection, client_address = self.my_socket.accept()
-            their_ip = client_address[0]
-            their_port = client_address[1]
+        # Service channels
+        user_connections_to_remove = []
+        for user_connection in user_connections:
+            user_connection.channel.service_channel()
+            if not user_connection.channel.receive_queue.empty():
+                data = user_connection.channel.receive_queue.get()
+                command = data["command"]
+                logging.debug(command)
+                if command == "login":
+                    user_name = data["user_name"]
+                    user_connection.user_name = user_name
+                    server_data["users"].append(user_name)
+                    channel_server.broadcast(server_data)
+                    logging.debug(f"Log in from  {user_connection.user_name}")
+                elif command == "logout":
+                    logging.debug(f"Logout from {user_connection.user_name}")
+                    user_connection.channel.close()
+                    user_connections_to_remove.append(user_connection)
+                    server_data["users"].remove(user_connection.user_name)
+                    channel_server.broadcast(server_data)
 
-            communications_channel = CommunicationsChannel()
-            communications_channel.connection = connection
-            communications_channel.their_ip = their_ip
-            communications_channel.their_port = their_port
-            communications_channel.my_ip_address = self.my_ip_address
-            communications_channel.my_ip_port = self.my_ip_port
-            communications_channel.current_state = CONNECTED
-            self.channels.append(communications_channel)
-            logging.debug(f"Client {their_ip}:{their_port} connected...")
-            return communications_channel
+        for user_connection in user_connections_to_remove:
+            user_connections.remove(user_connection)
+            logging.debug(f"Done with logout from {user_connection.user_name}")
 
-        except BlockingIOError:
-            # There was no connection. Wait before checking again.
-            return None
+        # Pause
+        time.sleep(0.1)
 
-    def broadcast(self, data):
-        for channel in self.channels:
-            if channel.current_state == CONNECTED:
-                channel.send_queue.put(data)
+
+server()
