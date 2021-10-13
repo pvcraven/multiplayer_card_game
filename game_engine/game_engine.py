@@ -1,6 +1,11 @@
 import logging
+import random
 
 logging.basicConfig(level=logging.DEBUG)
+
+# Card constants
+CARD_VALUES = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
+CARD_SUITS = ["Clubs", "Hearts", "Spades", "Diamonds"]
 
 
 class GameEngine:
@@ -9,9 +14,12 @@ class GameEngine:
         self.game_data = {"users": [],
                           "cards": []}
 
-        card = {"id": "SpadesA",
-                "location": [100, 100]}
-        self.game_data["cards"].append(card)
+        for card_value in CARD_VALUES:
+            x = random.randrange(600)
+            y = random.randrange(600)
+            card = {"id": f"Spades{card_value}",
+                    "location": [x, y]}
+            self.game_data["cards"].append(card)
 
     def process_data(self, data, user_connection):
         command = data["command"]
