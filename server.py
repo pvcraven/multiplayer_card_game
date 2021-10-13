@@ -2,6 +2,7 @@ import time
 import logging
 
 from server.channel_server import ChannelServer
+from game_engine import GameEngine
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -16,37 +17,46 @@ def server():
     channel_server = ChannelServer(my_ip_address='127.0.0.1', my_ip_port=10000)
     channel_server.start_listening()
     user_connections = []
-    server_data = {"users": []}
+    game = GameEngine()
 
     while True:
         # Check for new connections
         channel = channel_server.get_new_channel()
 
+        # There's a new connection
         if channel:
             user_connection = UserConnection()
             user_connection.channel = channel
             user_connections.append(user_connection)
 
-        # Service channels
+        # List of closing connections
         user_connections_to_remove = []
+
+        # Loop through each connection
         for user_connection in user_connections:
+
+            # Give time to process input
             user_connection.channel.service_channel()
+
+            # Check to see if we have any messages to process
             if not user_connection.channel.receive_queue.empty():
+
+                # We do!
                 data = user_connection.channel.receive_queue.get()
+
+                # Grab the command out of the list and process
                 command = data["command"]
                 logging.debug(command)
-                if command == "login":
-                    user_name = data["user_name"]
-                    user_connection.user_name = user_name
-                    server_data["users"].append(user_name)
-                    channel_server.broadcast(server_data)
-                    logging.debug(f"Log in from  {user_connection.user_name}")
-                elif command == "logout":
+                game.process_data(data, user_connection)
+
+                # The only command this thread cares about, disconnect
+                if command == "logout":
                     logging.debug(f"Logout from {user_connection.user_name}")
                     user_connection.channel.close()
                     user_connections_to_remove.append(user_connection)
-                    server_data["users"].remove(user_connection.user_name)
-                    channel_server.broadcast(server_data)
+
+                # Send everyone an update
+                channel_server.broadcast(game.game_data)
 
         for user_connection in user_connections_to_remove:
             user_connections.remove(user_connection)
