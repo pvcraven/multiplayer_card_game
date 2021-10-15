@@ -3,7 +3,8 @@ import logging
 import arcade
 import arcade.gui
 
-from gui.game_view import GameView
+from server.get_ip_address import get_ip_address
+from gui.waiting_for_players_view import WaitingForPlayersView
 from gui.connect_view import ConnectView
 from server.server import Server
 from network.communications_channel import CommunicationsChannel
@@ -55,7 +56,7 @@ class ClientOrServerView(arcade.View):
                                                      height=40,
                                                      font_size=24,
                                                      font_name="Kenney Future",
-                                                     text="<enter>",
+                                                     text="Paul",
                                                      text_color=(255, 255, 255, 255))
         self.gui_manager.add(self.name_input_box)
 
@@ -68,14 +69,18 @@ class ClientOrServerView(arcade.View):
 
         @server_button.event("on_click")
         def on_click_settings(event):
-            server_address = "127.0.0.1"
+            logging.debug(f"Starting server with user name {self.window.user_name}")
+
+            server_address = get_ip_address()
             server_port = 10000
 
-            game_view = GameView()
-            self.window.show_view(game_view)
-            self.window.user_name = self.name_input_box.text
-            logging.debug(f"Starting server with user name {self.window.user_name}")
+            # Create server
             self.window.server = Server(server_address, server_port)
+
+            # Create server view
+            view = WaitingForPlayersView(server=self.window.server)
+            self.window.show_view(view)
+            self.window.user_name = self.name_input_box.text
 
             user_name = self.window.user_name
             self.window.communications_channel = CommunicationsChannel(their_ip=server_address,

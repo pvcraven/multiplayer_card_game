@@ -12,14 +12,8 @@ class GameEngine:
 
     def __init__(self):
         self.game_data = {"users": [],
-                          "cards": []}
-
-        for card_value in CARD_VALUES:
-            x = random.randrange(600)
-            y = random.randrange(600)
-            card = {"id": f"Spades{card_value}",
-                    "location": [x, y]}
-            self.game_data["cards"].append(card)
+                          "cards": [],
+                          "view": "waiting_for_players"}
 
     def process_data(self, data, user_connection):
         command = data["command"]
@@ -49,4 +43,15 @@ class GameEngine:
                         server_card["location"] = client_position
                         logging.debug(f"  Moved {client_id}")
 
+        elif command == "start_game":
+
+            # Put the cards in the game
+            for card_value in CARD_VALUES:
+                x = random.randrange(600)
+                y = random.randrange(600)
+                card = {"id": f"Spades{card_value}",
+                        "location": [x, y]}
+                self.game_data["cards"].append(card)
+
+            self.game_data["view"] = "game_view"
 

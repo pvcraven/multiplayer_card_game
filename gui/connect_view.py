@@ -1,7 +1,7 @@
 import arcade
 import arcade.gui
 
-from gui.game_view import GameView
+from gui.waiting_for_players_view import WaitingForPlayersView
 from network.communications_channel import CommunicationsChannel
 
 
@@ -84,8 +84,8 @@ class ConnectView(arcade.View):
             data = {"command": "login", "user_name": user_name}
             self.window.communications_channel.send_queue.put(data)
 
-            game_view = GameView()
-            self.window.show_view(game_view)
+            view = WaitingForPlayersView()
+            self.window.show_view(view)
 
         self.gui_manager.add(connect_button)
 

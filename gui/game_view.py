@@ -22,6 +22,8 @@ class GameView(arcade.View):
         # they have to go back.
         self.held_cards_original_position = []
 
+        self.process_game_data(self.window.game_data)
+
     def on_update(self, delta_time):
 
         # Service client network tasks
@@ -35,16 +37,19 @@ class GameView(arcade.View):
         if not self.window.communications_channel.receive_queue.empty():
             data = self.window.communications_channel.receive_queue.get()
             self.window.game_data = data
-            cards = data["cards"]
-            self.card_list = arcade.SpriteList()
-            for card in cards:
-                id = card["id"]
-                location = card["location"]
-                image_file_name = f":resources:images/cards/card{id}.png"
-                sprite = arcade.Sprite(image_file_name, scale=0.5)
-                sprite.position = location
-                sprite.name = id
-                self.card_list.append(sprite)
+            self.process_game_data(data)
+
+    def process_game_data(self, data):
+        cards = data["cards"]
+        self.card_list = arcade.SpriteList()
+        for card in cards:
+            id = card["id"]
+            location = card["location"]
+            image_file_name = f":resources:images/cards/card{id}.png"
+            sprite = arcade.Sprite(image_file_name, scale=0.5)
+            sprite.position = location
+            sprite.name = id
+            self.card_list.append(sprite)
 
     def on_draw(self):
         arcade.start_render()
