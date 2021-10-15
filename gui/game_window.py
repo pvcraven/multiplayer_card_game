@@ -10,6 +10,7 @@ class GameWindow(arcade.Window):
         super().__init__(width, height, title)
         self.communications_channel = None
         self.game_data = None
+        self.user_name = None
 
     def on_close(self):
         print("Closing")

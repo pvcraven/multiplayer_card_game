@@ -1,5 +1,5 @@
 import arcade
-from gui.connect_view import ConnectView
+from gui.client_or_server_view import ClientOrServerView
 from gui.game_window import GameWindow
 
 SCREEN_WIDTH = 800
@@ -11,7 +11,7 @@ def main():
     """ Main function """
 
     window = GameWindow(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
-    start_view = ConnectView()
+    start_view = ClientOrServerView()
     window.show_view(start_view)
     arcade.run()
 

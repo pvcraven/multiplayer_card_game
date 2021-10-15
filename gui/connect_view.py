@@ -22,26 +22,6 @@ class ConnectView(arcade.View):
         input_field_width = 300
         line_height = 40
 
-        ui_text_label = arcade.gui.UITextArea(x=x_left,
-                                              y=y,
-                                              text="User name:",
-                                              width=450,
-                                              height=50,
-                                              font_size=24,
-                                              font_name="Kenney Future",
-                                              text_color=arcade.color.WHITE)
-        self.gui_manager.add(ui_text_label)
-
-        self.name_input_box = arcade.gui.UIInputText(x=x_right,
-                                                     y=y,
-                                                     width=input_field_width,
-                                                     height=50,
-                                                     font_size=24,
-                                                     font_name="Kenney Future",
-                                                     text="Sam Smith",
-                                                     text_color=(255, 255, 255, 255))
-        self.gui_manager.add(self.name_input_box)
-
         y -= line_height
 
         ui_text_label = arcade.gui.UITextArea(x=x_left,
@@ -95,7 +75,7 @@ class ConnectView(arcade.View):
         @connect_button.event("on_click")
         def on_click_settings(event):
             print("Connect:", event)
-            user_name = self.name_input_box.text
+            user_name = self.window.user_name
             port = int(self.port_input_box.text)
             server = self.server_input_box.text
 
@@ -114,5 +94,3 @@ class ConnectView(arcade.View):
     def on_draw(self):
         arcade.start_render()
         self.gui_manager.draw()
-
-
