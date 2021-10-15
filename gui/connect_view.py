@@ -75,10 +75,10 @@ class ConnectView(arcade.View):
         @connect_button.event("on_click")
         def on_click_settings(event):
             print("Connect:", event)
-            user_name = self.window.user_name
             port = int(self.port_input_box.text)
             server = self.server_input_box.text
 
+            user_name = self.window.user_name
             self.window.communications_channel = CommunicationsChannel(their_ip=server, their_port=port)
             self.window.communications_channel.connect()
             data = {"command": "login", "user_name": user_name}

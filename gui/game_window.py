@@ -9,6 +9,7 @@ class GameWindow(arcade.Window):
     def __init__(self, width, height, title):
         super().__init__(width, height, title)
         self.communications_channel = None
+        self.server = None
         self.game_data = None
         self.user_name = None
 

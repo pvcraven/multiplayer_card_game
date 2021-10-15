@@ -5,6 +5,8 @@ import arcade.gui
 
 from gui.game_view import GameView
 from gui.connect_view import ConnectView
+from server.server import Server
+from network.communications_channel import CommunicationsChannel
 
 
 class ClientOrServerView(arcade.View):
@@ -66,10 +68,23 @@ class ClientOrServerView(arcade.View):
 
         @server_button.event("on_click")
         def on_click_settings(event):
+            server_address = "127.0.0.1"
+            server_port = 10000
+
             game_view = GameView()
             self.window.show_view(game_view)
             self.window.user_name = self.name_input_box.text
             logging.debug(f"Starting server with user name {self.window.user_name}")
+            self.window.server = Server(server_address, server_port)
+
+            user_name = self.window.user_name
+            self.window.communications_channel = CommunicationsChannel(their_ip=server_address,
+                                                                       their_port=server_port)
+            self.window.communications_channel.connect()
+            data = {"command": "login", "user_name": user_name}
+            self.window.communications_channel.send_queue.put(data)
+
+            self.window.server.server_check()
 
         self.gui_manager.add(server_button)
 
@@ -101,5 +116,3 @@ class ClientOrServerView(arcade.View):
         x += width / 2 - 5
         y += height / 2
         arcade.draw_rectangle_outline(x, y, width, height, arcade.color.WHITE, 2)
-
-

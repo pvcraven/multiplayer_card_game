@@ -24,7 +24,14 @@ class GameView(arcade.View):
 
     def on_update(self, delta_time):
 
+        # Service client network tasks
         self.window.communications_channel.service_channel()
+
+        # Are we a server? If so, service that
+        if self.window.server:
+            self.window.server.server_check()
+
+        # Any messages to process?
         if not self.window.communications_channel.receive_queue.empty():
             data = self.window.communications_channel.receive_queue.get()
             self.window.game_data = data
