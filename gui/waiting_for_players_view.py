@@ -92,7 +92,7 @@ class WaitingForPlayersView(arcade.View):
             users = self.window.game_data["users"]
             for user in users:
                 y -= 30
-                arcade.draw_text(user,
+                arcade.draw_text(user["name"],
                                  start_x=x,
                                  start_y=y,
                                  color=arcade.color.WHITE,
