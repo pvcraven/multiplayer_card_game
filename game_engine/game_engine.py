@@ -57,22 +57,28 @@ class GameEngine:
             #     self.game_data["cards"].append(card)
 
             for user_no in range(len(self.game_data["users"])):
+                x, y = PIECE_OFFSET
                 for piece_no in range(3):
-                    x = DISTANCE_BETWEEN_USERS * user_no + 20 + piece_no * 32
-                    y = 15
+                    x2 = DISTANCE_BETWEEN_USERS * user_no + x
+                    y2 = y
+                    x += PIECE_LIST_OFFSET[0]
+                    y += PIECE_LIST_OFFSET[1]
                     piece = {"image_name": f"player_pieces/player_{user_no + 1}",
-                             "name": f"piece-{piece_no}",
-                             "location": [x, y]}
+                             "name": f"piece-{user_no}-{piece_no}",
+                             "location": [x2, y2]}
                     self.game_data["pieces"].append(piece)
 
-            x = 100
-            y = 200
+            x = PLACEMENT_START_OFFSET[0]
+            y = PLACEMENT_START_OFFSET[1]
+            count = 0
             for placement in placements:
+                count += 1
                 placement["location"] = [x, y]
                 self.game_data["placements"].append(placement)
-                y += 100
-                if y > 400:
-                    y = 200
+                x += PLACEMENT_LIST_OFFSET[0]
+                y += PLACEMENT_LIST_OFFSET[1]
+                if count % PLACEMENTS_PER_COLUMN == 0:
+                    y = PLACEMENT_START_OFFSET[1]
                     x += 200
 
             self.game_data["view"] = "game_view"

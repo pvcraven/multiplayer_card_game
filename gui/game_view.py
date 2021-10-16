@@ -97,12 +97,12 @@ class GameView(arcade.View):
         self.placement_decorations.draw()
         self.piece_list.draw()
 
-        x = 10
-        y = 30
-
         if self.window.game_data:
             users = self.window.game_data["users"]
-            for user in users:
+            for user_no, user in enumerate(users):
+                x = USER_NAME_OFFSET[0] + (DISTANCE_BETWEEN_USERS * user_no)
+                y = USER_NAME_OFFSET[1]
+
                 arcade.draw_text(user["name"],
                                  start_x=x,
                                  start_y=y,
@@ -111,17 +111,23 @@ class GameView(arcade.View):
                                  font_name="Kenney Future",
                                  )
 
-                resources_text = ""
-                for i in range(resource_count):
-                    letter = chr(i+65)
-                    resources_text += f"{letter}-{user['resources'][i]} "
+                x = RESOURCE_LIST_OFFSET[0] + (DISTANCE_BETWEEN_USERS * user_no)
+                y = RESOURCE_LIST_OFFSET[1]
 
-                arcade.draw_text(resources_text,
-                                 start_x=x + 105,
-                                 start_y=y - 28,
-                                 color=arcade.color.PASTEL_BROWN,
-                                 font_size=20,
-                                 )
+                for i in range(resource_count):
+                    resources_text = ""
+                    x += RESOURCE_LIST_SEPARATION[0]
+                    y += RESOURCE_LIST_SEPARATION[1]
+                    letter = chr(i+65)
+                    resources_text += f"{letter}-{user['resources'][i]}"
+
+                    arcade.draw_text(resources_text,
+                                     start_x=x,
+                                     start_y=y,
+                                     color=arcade.color.PASTEL_BROWN,
+                                     font_size=20,
+                                     )
+
                 x += DISTANCE_BETWEEN_USERS
 
     def on_mouse_press(self, x, y, button, key_modifiers):

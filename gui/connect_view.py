@@ -40,7 +40,7 @@ class ConnectView(arcade.View):
                                                        height=50,
                                                        font_size=24,
                                                        font_name="Kenney Future",
-                                                       text="127.0.0.1",
+                                                       text="192.168.1.75",
                                                        text_color=(255, 255, 255, 255))
         self.gui_manager.add(self.server_input_box)
 

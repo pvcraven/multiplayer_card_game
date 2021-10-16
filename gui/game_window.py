@@ -2,12 +2,14 @@ import arcade
 import time
 import logging
 
+from gui.constants import *
+
 logging.basicConfig(level=logging.DEBUG)
 
 
 class GameWindow(arcade.Window):
-    def __init__(self, width, height, title):
-        super().__init__(width, height, title)
+    def __init__(self):
+        super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
         self.communications_channel = None
         self.server = None
         self.game_data = None
