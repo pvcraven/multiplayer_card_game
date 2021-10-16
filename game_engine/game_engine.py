@@ -1,13 +1,10 @@
 import logging
-import random
 
 from gui.constants import *
+from game_engine.constants import *
+from game_engine.placements import placements
 
 logging.basicConfig(level=logging.DEBUG)
-
-# Card constants
-CARD_VALUES = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
-CARD_SUITS = ["Clubs", "Hearts", "Spades", "Diamonds"]
 
 
 class GameEngine:
@@ -25,12 +22,7 @@ class GameEngine:
         if command == "login":
             user_name = data["user_name"]
             user = {"name": user_name,
-                    "resource-1": 0,
-                    "resource-2": 0,
-                    "resource-3": 0,
-                    "resource-4": 0,
-                    "resource-5": 0,
-                    }
+                    "resources": [0] * resource_count}
             user_connection.user_name = user_name
             self.game_data["users"].append(user)
             logging.debug(f"Log in from  {user_connection.user_name}")
@@ -74,20 +66,14 @@ class GameEngine:
                     self.game_data["pieces"].append(piece)
 
             x = 100
-            y = 100
-            placement = {"image_name": f"placements/placement_1",
-                         "name": f"placement-1",
-                         "location": [x, y],
-                         "actions": ["add-resource-1"]}
-            self.game_data["placements"].append(placement)
-
-            x = 100
-            y = 300
-            placement = {"image_name": f"placements/placement_2",
-                         "name": f"placement-2",
-                         "location": [x, y],
-                         "actions": ["add-resource-2"]}
-            self.game_data["placements"].append(placement)
+            y = 200
+            for placement in placements:
+                placement["location"] = [x, y]
+                self.game_data["placements"].append(placement)
+                y += 100
+                if y > 400:
+                    y = 200
+                    x += 200
 
             self.game_data["view"] = "game_view"
 
@@ -121,8 +107,6 @@ class GameEngine:
                 piece["location"][1] += PIECE_PLACEMENT_OFFSET[1]
                 logging.debug(f"Moved piece to {destination}.")
                 for action in placement["actions"]:
-                    if action == "add-resource-1":
-                        player["resource-1"] += 1
-                    if action == "add-resource-2":
-                        player["resource-2"] += 1
-
+                    for i in range(0, resource_count):
+                        if action == f"add-resource-{i}":
+                            player["resources"][i] += 1

@@ -2,6 +2,7 @@ import arcade
 
 
 from gui.constants import *
+from game_engine.constants import *
 
 
 class GameView(arcade.View):
@@ -15,6 +16,7 @@ class GameView(arcade.View):
         self.card_list = arcade.SpriteList()
         self.piece_list = arcade.SpriteList()
         self.placement_list = arcade.SpriteList()
+        self.placement_decorations = arcade.SpriteList()
 
         # List of items we are dragging with the mouse
         self.held_items = []
@@ -76,12 +78,23 @@ class GameView(arcade.View):
             sprite.position = location
             sprite.name = name
             self.placement_list.append(sprite)
+            x = 51
+            for action in placement["actions"]:
+                for i in range(resource_count):
+                    if action == f"add-resource-{i}":
+                        image_file_name = f"images/resources/resource-{i}.png"
+
+                sprite = arcade.Sprite(image_file_name, scale=0.5)
+                sprite.position = [location[0] + x, location[1] - 27]
+                self.placement_decorations.append(sprite)
+                x -= 18
 
     def on_draw(self):
         arcade.start_render()
 
         self.card_list.draw()
         self.placement_list.draw()
+        self.placement_decorations.draw()
         self.piece_list.draw()
 
         x = 10
@@ -98,7 +111,11 @@ class GameView(arcade.View):
                                  font_name="Kenney Future",
                                  )
 
-                resources_text = f"A-{user['resource-1']}, B-{user['resource-2']}"
+                resources_text = ""
+                for i in range(resource_count):
+                    letter = chr(i+65)
+                    resources_text += f"{letter}-{user['resources'][i]} "
+
                 arcade.draw_text(resources_text,
                                  start_x=x + 105,
                                  start_y=y - 28,
