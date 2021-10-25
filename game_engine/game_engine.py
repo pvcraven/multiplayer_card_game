@@ -16,70 +16,43 @@ class GameEngine:
                           "placements": [],
                           "view": "waiting_for_players"}
 
+    def command_login(self, data, user_connection):
+        user_name = data["user_name"]
+        user = {"name": user_name,
+                "resources": [0] * resource_count}
+        user_connection.user_name = user_name
+        self.game_data["users"].append(user)
+        logging.debug(f"Log in from  {user_connection.user_name}")
+
+    def command_logout(self, data, user_connection):
+        logging.debug(f"Logout from {user_connection.user_name}")
+        self.game_data["users"].remove(user_connection.user_name)
+
     def process_data(self, data, user_connection):
         command = data["command"]
 
         if command == "login":
-            user_name = data["user_name"]
-            user = {"name": user_name,
-                    "resources": [0] * resource_count}
-            user_connection.user_name = user_name
-            self.game_data["users"].append(user)
-            logging.debug(f"Log in from  {user_connection.user_name}")
-
+            self.command_login(data, user_connection)
         elif command == "logout":
-            logging.debug(f"Logout from {user_connection.user_name}")
-            self.game_data["users"].remove(user_connection.user_name)
-
-        elif command == "move_cards":
-
-            logging.debug(f"Moving cards")
-            client_cards = data["cards"]
-            server_cards = self.game_data["cards"]
-
-            for client_card in client_cards:
-                client_id = client_card["id"]
-                client_position = client_card["position"]
-                logging.debug(f"  Processing {client_id}")
-                for server_card in server_cards:
-                    if client_id == server_card["id"]:
-                        server_card["location"] = client_position
-                        logging.debug(f"  Moved {client_id}")
+            self.command_logout(data, user_connection)
 
         elif command == "start_game":
-
-            # # Put the cards in the game
-            # for card_value in CARD_VALUES:
-            #     x = random.randrange(600)
-            #     y = random.randrange(600)
-            #     card = {"id": f"Spades{card_value}",
-            #             "location": [x, y]}
-            #     self.game_data["cards"].append(card)
 
             for user_no in range(len(self.game_data["users"])):
                 x, y = PIECE_OFFSET
                 for piece_no in range(3):
-                    x2 = DISTANCE_BETWEEN_USERS * user_no + x
-                    y2 = y
                     x += PIECE_LIST_OFFSET[0]
                     y += PIECE_LIST_OFFSET[1]
                     piece = {"image_name": f"player_pieces/player_{user_no + 1}",
                              "name": f"piece-{user_no}-{piece_no}",
-                             "location": [x2, y2]}
+                             "location": f"playerpiece-{user_no}-{piece_no}"}
                     self.game_data["pieces"].append(piece)
 
-            x = PLACEMENT_START_OFFSET[0]
-            y = PLACEMENT_START_OFFSET[1]
             count = 0
             for placement in placements:
-                count += 1
-                placement["location"] = [x, y]
+                placement["location"] = f"placement_location-{count}"
                 self.game_data["placements"].append(placement)
-                x += PLACEMENT_LIST_OFFSET[0]
-                y += PLACEMENT_LIST_OFFSET[1]
-                if count % PLACEMENTS_PER_COLUMN == 0:
-                    y = PLACEMENT_START_OFFSET[1]
-                    x += 200
+                count += 1
 
             self.game_data["view"] = "game_view"
 
@@ -108,9 +81,7 @@ class GameEngine:
             assert player is not None
 
             if piece and placement:
-                piece["location"] = [placement["location"][0], placement["location"][1]]
-                piece["location"][0] += PIECE_PLACEMENT_OFFSET[0]
-                piece["location"][1] += PIECE_PLACEMENT_OFFSET[1]
+                piece["location"] = placement["location"]
                 logging.debug(f"Moved piece to {destination}.")
                 for action in placement["actions"]:
                     for i in range(0, resource_count):

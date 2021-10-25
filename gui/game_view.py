@@ -1,8 +1,32 @@
 import arcade
-
+import logging
 
 from gui.constants import *
 from game_engine.constants import *
+
+
+logging.basicConfig(level=logging.DEBUG)
+
+
+def calculate_xy_location(location):
+    logging.debug(f"Calculating location for {location}.")
+    location_list = location.split("-")
+
+    if location_list[0] == "placement_location":
+        placement = int(location_list[1])
+        column = placement // PLACEMENTS_PER_COLUMN
+        row = placement % PLACEMENTS_PER_COLUMN
+        x = row * PLACEMENT_LIST_OFFSET[0] + PLACEMENT_START_OFFSET[0] + PLACEMENT_COLUMN_OFFSET[0] * column
+        y = row * PLACEMENT_LIST_OFFSET[1] + PLACEMENT_START_OFFSET[1] + PLACEMENT_COLUMN_OFFSET[1] * column
+        return x, y
+    elif location_list[0] == "playerpiece":
+        user_no = int(location_list[1])
+        piece_no = int(location_list[2])
+        x = DISTANCE_BETWEEN_USERS * user_no + PIECE_OFFSET[0]
+        y = PIECE_OFFSET[1] + PIECE_LIST_OFFSET[1] * piece_no
+        return x, y
+
+    raise Exception(f"Invalid location '{location}'")
 
 
 class GameView(arcade.View):
@@ -44,50 +68,39 @@ class GameView(arcade.View):
 
     def process_game_data(self, data):
 
-        cards = data["cards"]
-        self.card_list = arcade.SpriteList()
-        for card in cards:
-            id = card["id"]
-            location = card["location"]
-            image_file_name = f":resources:images/cards/card{id}.png"
-            sprite = arcade.Sprite(image_file_name, scale=0.5)
-            sprite.position = location
-            sprite.name = id
-            self.card_list.append(sprite)
-
-        pieces = data["pieces"]
-        self.piece_list = arcade.SpriteList()
-        for piece in pieces:
-            name = piece["name"]
-            image_name = piece["image_name"]
-            location = piece["location"]
-            image_file_name = f"images/{image_name}.png"
-            sprite = arcade.Sprite(image_file_name, scale=0.5)
-            sprite.position = location
-            sprite.name = name
-            self.piece_list.append(sprite)
-
         placements = data["placements"]
         self.placement_list = arcade.SpriteList()
         for placement in placements:
             name = placement["name"]
             image_name = placement["image_name"]
             location = placement["location"]
+
             image_file_name = f"images/{image_name}.png"
             sprite = arcade.Sprite(image_file_name, scale=0.5)
-            sprite.position = location
+            sprite.position = calculate_xy_location(location)
             sprite.name = name
             self.placement_list.append(sprite)
-            x = 51
-            for action in placement["actions"]:
+            for count, action in enumerate(placement["actions"]):
                 for i in range(resource_count):
                     if action == f"add-resource-{i}":
                         image_file_name = f"images/resources/resource-{i}.png"
 
                 sprite = arcade.Sprite(image_file_name, scale=0.5)
-                sprite.position = [location[0] + x, location[1] - 27]
+                sprite.position = calculate_xy_location(location)
+                sprite.position = (sprite.position[0] + RESOURCE_PLACEMENT_OFFSET[0] + RESOURCE_PLACEMENT_LIST_OFFSET[0] * count,
+                                   sprite.position[1] + RESOURCE_PLACEMENT_OFFSET[1])
                 self.placement_decorations.append(sprite)
-                x -= 18
+
+        pieces = data["pieces"]
+        self.piece_list = arcade.SpriteList()
+        for piece in pieces:
+            name = piece["name"]
+            image_name = piece["image_name"]
+            image_file_name = f"images/{image_name}.png"
+            sprite = arcade.Sprite(image_file_name, scale=0.5)
+            sprite.position = calculate_xy_location(piece["location"])
+            sprite.name = name
+            self.piece_list.append(sprite)
 
     def on_draw(self):
         arcade.start_render()
