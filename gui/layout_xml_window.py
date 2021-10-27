@@ -2,9 +2,11 @@ import arcade
 import time
 import logging
 
-from gui.constants import *
-
 from layout_xml import process_svg
+
+SCREEN_WIDTH = 1600
+SCREEN_HEIGHT = 900
+SCREEN_TITLE = "Test"
 
 logging.basicConfig(level=logging.DEBUG)
 

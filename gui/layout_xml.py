@@ -3,6 +3,13 @@ from dataclasses import dataclass
 import xml.etree.ElementTree as ElementTree
 
 
+MM_TO_PX = 3.7795
+
+
+def convert_mm_to_px(mm: float):
+    return mm * MM_TO_PX
+
+
 @dataclass
 class Rect:
     """Class for keeping track of an item in inventory."""
@@ -26,10 +33,10 @@ def process_item(item: ElementTree, shapes: List):
 
     elif item.tag == "rect":
         item_id = item.attrib['id']
-        width = float(item.attrib['width'])
-        height = float(item.attrib['height'])
-        x = float(item.attrib['x'])
-        y = float(item.attrib['y'])
+        width = convert_mm_to_px(float(item.attrib['width']))
+        height = convert_mm_to_px(float(item.attrib['height']))
+        x = convert_mm_to_px(float(item.attrib['x']))
+        y = convert_mm_to_px(float(item.attrib['y']))
         rect = Rect(item_id, x, y, width, height)
         shapes.append(rect)
 
