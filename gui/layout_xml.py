@@ -61,6 +61,7 @@ def process_item(item: ElementTree, shapes: List):
 
         # Create object and append to list
         rect = Rect(item_id, x, y, width, height, style_dict)
+        print(rect)
         shapes.append(rect)
 
 

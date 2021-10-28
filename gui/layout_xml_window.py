@@ -28,24 +28,23 @@ class GameWindow(arcade.Window):
         # Get our display size based on this ratio
         display_width = ratio * ratio_width
         display_height = ratio * ratio_height
-        print(ratio)
 
         # Calculate our lower-left origin
         origin_x = (screen_width - display_width) / 2
         origin_y = (screen_height - display_height) / 2
 
         for shape in self.svg.shapes:
-            cx = (shape.x + shape.width / 2) * ratio
-            cy = (self.height - (shape.y + shape.height / 2)) * ratio
+            cx = (shape.x + shape.width / 2) * ratio + origin_x
+            cy = (self.height - (shape.y + shape.height / 2) * ratio) - origin_y
             width = shape.width * ratio
-            height = shape.width * ratio
+            height = shape.height * ratio
             if "fill" in shape.style:
                 color = shape.style["fill"]
                 if isinstance(color, str) and color.startswith("#"):
                     h = color.lstrip('#')
                     color = [int(h[i:i + 2], 16) for i in (0, 2, 4)]
                     if "fill-opacity" in shape.style:
-                        opacity = int(float(shape.style["stroke-opacity"]) * 255)
+                        opacity = int(float(shape.style["fill-opacity"]) * 255)
                         color.append(opacity)
                     arcade.draw_rectangle_filled(cx, cy, width, height, color)
             if "stroke" in shape.style:

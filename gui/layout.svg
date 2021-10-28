@@ -20,24 +20,25 @@
      id="defs2" />
   <sodipodi:namedview
      id="base"
-     pagecolor="#ffffff"
+     pagecolor="#ffffdf"
      bordercolor="#666666"
      borderopacity="1.0"
-     inkscape:pageopacity="0.0"
+     inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4"
-     inkscape:cx="16.428571"
-     inkscape:cy="425"
+     inkscape:zoom="0.9899495"
+     inkscape:cx="403.05086"
+     inkscape:cy="487.3986"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      units="px"
-     inkscape:window-width="3494"
-     inkscape:window-height="1653"
-     inkscape:window-x="0"
-     inkscape:window-y="329"
+     inkscape:window-width="1842"
+     inkscape:window-height="1509"
+     inkscape:window-x="364"
+     inkscape:window-y="233"
      inkscape:window-maximized="0"
-     inkscape:pagecheckerboard="0" />
+     inkscape:pagecheckerboard="0"
+     showguides="false" />
   <metadata
      id="metadata5">
     <rdf:RDF>
@@ -54,63 +55,96 @@
      inkscape:groupmode="layer"
      id="layer1">
     <rect
-       style="fill:#f9e5df;fill-opacity:1;stroke:#000000;stroke-width:1.04793012;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       y="158.64896"
-       x="0.52396506"
-       height="78.952072"
-       width="158.95207"
-       id="user1"
-       inkscape:label="#rect3713" />
+       style="fill:#44aa00;fill-opacity:0.996255;stroke:none;stroke-width:0;stroke-miterlimit:1"
+       id="rect831-0"
+       width="13.229167"
+       height="13.229167"
+       x="9.2196998e-08"
+       y="224.89584" />
     <rect
-       y="158.64896"
-       x="0.52396506"
-       height="19.036282"
-       width="19.03628"
-       id="user1-1"
-       style="fill:#f9bbdf;fill-opacity:1;stroke:#000000;stroke-width:0.96371889;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       inkscape:label="#rect5968" />
-    <flowRoot
-       xml:space="preserve"
-       id="flowRoot5982"
-       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"><flowRegion
-         id="flowRegion5984"><rect
-           id="rect5986"
-           width="242.85715"
-           height="48.57143"
-           x="130"
-           y="510.71429" /></flowRegion><flowPara
-         id="flowPara5988" /></flowRoot>
+       style="fill:#800000;fill-opacity:0.996255;stroke:none;stroke-width:0;stroke-miterlimit:1"
+       id="rect831-0-5"
+       width="13.229167"
+       height="13.229167"
+       x="13.229167"
+       y="211.66667" />
+    <rect
+       style="fill:#99ff55;fill-opacity:0.996255;stroke:none;stroke-width:0;stroke-miterlimit:1"
+       id="rect831-0-5-4"
+       width="13.229167"
+       height="13.229167"
+       x="9.2196998e-08"
+       y="198.4375" />
+    <rect
+       style="fill:#008000;fill-opacity:0.996255;stroke:none;stroke-width:0;stroke-miterlimit:1"
+       id="rect831-0-5-4-6"
+       width="13.229167"
+       height="13.229167"
+       x="26.458334"
+       y="198.4375" />
+    <rect
+       style="fill:#ff00ff;fill-opacity:0.996255;stroke:none;stroke-width:0;stroke-miterlimit:1"
+       id="rect831-0-5-4-6-0"
+       width="13.229167"
+       height="13.229167"
+       x="39.6875"
+       y="185.20833" />
+    <rect
+       style="fill:#ff0000;fill-opacity:0.996255;stroke:none;stroke-width:0;stroke-miterlimit:1"
+       id="rect831-0-5-4-6-0-7"
+       width="13.229167"
+       height="13.229167"
+       x="52.916668"
+       y="171.97916" />
+    <rect
+       style="fill:#ff7400;fill-opacity:0.996255;stroke:#000000;stroke-width:0.529167;stroke-miterlimit:1;stroke-dasharray:none;stroke-opacity:1"
+       id="rect831-0-5-4-6-0-7-9"
+       width="13.229167"
+       height="13.229167"
+       x="66.145836"
+       y="158.74998" />
+    <rect
+       style="fill:#00000a;fill-opacity:0.996255;stroke:none;stroke-width:0;stroke-miterlimit:1"
+       id="rect831-0-5-4-6-0-3-9"
+       width="13.229167"
+       height="13.229167"
+       x="410.10419"
+       y="-9.2197013e-08"
+       inkscape:label="square_c" />
+    <rect
+       style="fill:#00000a;fill-opacity:0.996255;stroke:none;stroke-width:0;stroke-miterlimit:1"
+       id="rect831-0-5-4-6-0-3"
+       width="13.229167"
+       height="13.229167"
+       x="-1.110223e-16"
+       y="-9.2196984e-08"
+       inkscape:label="square_e" />
+    <rect
+       style="fill:#00000a;fill-opacity:0.996255;stroke:none;stroke-width:0;stroke-miterlimit:1"
+       id="rect831-0-5-4-6-0-3-9-1"
+       width="13.229167"
+       height="13.229167"
+       x="410.10419"
+       y="224.89584"
+       inkscape:label="square_a" />
+    <rect
+       style="fill:none;fill-opacity:0.996255;stroke:#000000;stroke-width:1.32292;stroke-miterlimit:1;stroke-dasharray:none;stroke-opacity:1"
+       id="rect1010"
+       width="417.09705"
+       height="231.8887"
+       x="3.1181498"
+       y="3.1181498"
+       inkscape:label="square_b" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
-       x="-0.91984046"
-       y="157.9648"
-       id="text5992"><tspan
+       x="81.784477"
+       y="156.08542"
+       id="text2356"><tspan
          sodipodi:role="line"
-         id="tspan5990"
-         x="-0.91984046"
-         y="157.9648"
-         style="stroke-width:0.264583">User 1</tspan></text>
-    <rect
-       style="fill:#00000a;fill-opacity:0.03921569;stroke:#000000;stroke-width:1.05833328;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="rect1406-0"
-       width="6.4255953"
-       height="2.8348215"
-       x="0.52396506"
-       y="234.7662" />
-    <rect
-       style="fill:#c8b7b7;stroke:none;stroke-width:0.264583"
-       id="rect853"
-       width="35.71875"
-       height="37.986607"
-       x="67.279762"
-       y="132.66965" />
-    <rect
-       style="fill:none;stroke:#ff0000;stroke-width:0.74083335;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
-       id="rect899"
-       width="43.65625"
-       height="38.175598"
-       x="130.0238"
-       y="142.68602" />
+         id="tspan2354"
+         style="stroke-width:0.264583"
+         x="81.784477"
+         y="156.08542">Test</tspan></text>
   </g>
 </svg>
