@@ -11,6 +11,13 @@ def convert_mm_to_px(mm: float):
 
 
 @dataclass
+class SVG:
+    shapes: list
+    width: float
+    height: float
+
+
+@dataclass
 class Rect:
     """Class for keeping track of an item in inventory."""
     id: str
@@ -18,6 +25,7 @@ class Rect:
     y: float
     width: float
     height: float
+    style: dict
 
 
 def process_item(item: ElementTree, shapes: List):
@@ -32,12 +40,27 @@ def process_item(item: ElementTree, shapes: List):
             process_item(child, shapes)
 
     elif item.tag == "rect":
+        # Grab id
         item_id = item.attrib['id']
+        # Dimensions
         width = convert_mm_to_px(float(item.attrib['width']))
         height = convert_mm_to_px(float(item.attrib['height']))
+        # Coordinates
         x = convert_mm_to_px(float(item.attrib['x']))
         y = convert_mm_to_px(float(item.attrib['y']))
-        rect = Rect(item_id, x, y, width, height)
+        # Style info
+        style_string = item.attrib['style']
+        style_list = style_string.split(';')
+        style_dict = {}
+        for item in style_list:
+            name, value = item.split(':')
+            style_dict[name] = value
+
+        if "stroke-width" in style_dict:
+            style_dict["stroke-width"] = convert_mm_to_px(float(style_dict["stroke-width"]))
+
+        # Create object and append to list
+        rect = Rect(item_id, x, y, width, height, style_dict)
         shapes.append(rect)
 
 
@@ -45,15 +68,16 @@ def process_svg(filename):
     tree = ElementTree.parse(filename)
     root = tree.getroot()
 
-    width = root.attrib['width']
-    height = root.attrib['height']
+    width = float(root.attrib['width'])
+    height = float(root.attrib['height'])
     print(width, height)
 
     shapes = []
     for item in root:
         process_item(item, shapes)
 
-    return shapes
+    svg = SVG(shapes, width, height)
+    return svg
 
 
 def main():
