@@ -46,6 +46,12 @@ def get_shape_at(svg, origin_x, origin_y, scale, target_x, target_y):
             print(f"Yes: {shape.id}")
 
 
+def get_rect_for_name(svg, name: str):
+    for shape in svg.shapes:
+        if shape.id == name:
+            return shape
+
+
 def process_item(item: ElementTree, shapes: List, image_height: float):
     # Strip namespace
     _, _, item.tag = item.tag.rpartition('}')
@@ -100,7 +106,7 @@ def process_svg(filename):
 
 
 def main():
-    process_svg('layout.svg')
+    process_svg('gui/layout.svg')
 
 
 main()

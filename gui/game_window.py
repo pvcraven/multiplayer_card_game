@@ -9,7 +9,7 @@ logging.basicConfig(level=logging.DEBUG)
 
 class GameWindow(arcade.Window):
     def __init__(self):
-        super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
+        super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE, resizable=True)
         self.communications_channel = None
         self.server = None
         self.game_data = None

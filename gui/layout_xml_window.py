@@ -1,10 +1,9 @@
 import arcade
-import time
 import logging
 
-from layout_xml import process_svg
-from layout_xml import get_rect_info
-from layout_xml import get_shape_at
+from gui import process_svg
+from gui import get_rect_info
+from gui import get_shape_at
 
 SCREEN_WIDTH = 1600
 SCREEN_HEIGHT = 900
@@ -69,6 +68,7 @@ class GameWindow(arcade.Window):
         print("Click")
         origin_x, origin_y, scale = self.calculate_screen_data()
         get_shape_at(self.svg, origin_x, origin_y, scale, x, y)
+
 
 GameWindow()
 arcade.run()

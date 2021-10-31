@@ -2,7 +2,7 @@ import logging
 import arcade
 import arcade.gui
 
-from gui.game_view import GameView
+from gui.game_view_xml import GameViewXML
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -54,7 +54,7 @@ class WaitingForPlayersView(arcade.View):
             self.window.game_data = data
             if data["view"] == "game_view":
                 logging.debug("Message received, switching to game view.")
-                view = GameView()
+                view = GameViewXML()
                 self.window.show_view(view)
 
     def on_draw(self):
