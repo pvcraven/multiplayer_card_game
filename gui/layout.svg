@@ -34,8 +34,8 @@
      units="px"
      inkscape:window-width="3067"
      inkscape:window-height="1670"
-     inkscape:window-x="721"
-     inkscape:window-y="86"
+     inkscape:window-x="560"
+     inkscape:window-y="96"
      inkscape:window-maximized="0"
      inkscape:pagecheckerboard="0"
      showguides="true"
@@ -61,69 +61,69 @@
        width="79.375"
        height="52.916668"
        x="3.7417734"
-       y="181.74327" />
+       y="181.61" />
     <rect
-       style="fill:none;fill-opacity:0.996255;stroke:#000000;stroke-width:0.740833;stroke-opacity:1"
+       style="fill:none;fill-opacity:0.996255;stroke:#000000;stroke-width:0.728015;stroke-opacity:1"
        id="playerpiece-0-0"
-       width="12.561668"
-       height="10.156242"
-       x="5.6126604"
-       y="183.88144" />
+       width="12.501152"
+       height="9.855319"
+       x="5.6556745"
+       y="182.92651" />
     <rect
-       style="fill:none;fill-opacity:0.996255;stroke:#000000;stroke-width:0.740833;stroke-opacity:1"
+       style="fill:none;fill-opacity:0.996255;stroke:#000000;stroke-width:0.728015;stroke-opacity:1"
        id="playerpiece-0-1"
-       width="12.561668"
-       height="10.156242"
-       x="5.2117558"
-       y="195.6413" />
+       width="12.501152"
+       height="9.855319"
+       x="5.6556745"
+       y="194.83276" />
     <rect
-       style="fill:none;fill-opacity:0.996255;stroke:#000000;stroke-width:0.740833;stroke-opacity:1"
+       style="fill:none;fill-opacity:0.996255;stroke:#000000;stroke-width:0.728015;stroke-opacity:1"
        id="playerpiece-0-2"
-       width="12.561668"
-       height="10.156242"
-       x="4.9444866"
-       y="207.38503" />
+       width="12.501152"
+       height="9.855319"
+       x="5.6556745"
+       y="206.73901" />
     <rect
-       style="fill:#c6c4ed;fill-opacity:0.996255;stroke:none;stroke-width:0.54323;stroke-opacity:1"
+       style="fill:#c6c4ed;fill-opacity:0.996255;stroke:none;stroke-width:0.631478;stroke-opacity:1"
        id="placement_location-1"
-       width="60.937454"
-       height="39.021351"
-       x="114.12409"
-       y="29.934187" />
+       width="71.4375"
+       height="44.979168"
+       x="2.6458335"
+       y="2.6458335" />
     <rect
-       style="fill:#c6c4ed;fill-opacity:0.996255;stroke:none;stroke-width:0.54323;stroke-opacity:1"
+       style="fill:#c6c4ed;fill-opacity:0.996255;stroke:none;stroke-width:0.631479;stroke-opacity:1"
        id="placement_location-2"
-       width="60.937454"
-       height="39.021351"
-       x="113.58955"
-       y="74.033661" />
+       width="71.4375"
+       height="44.979168"
+       x="2.6458335"
+       y="50.270836" />
     <rect
-       style="fill:#c6c4ed;fill-opacity:0.996255;stroke:none;stroke-width:0.54323;stroke-opacity:1"
+       style="fill:#c6c4ed;fill-opacity:0.996255;stroke:none;stroke-width:0.631479;stroke-opacity:1"
        id="placement_location-3"
-       width="60.937454"
-       height="39.021351"
-       x="113.05501"
-       y="118.40041" />
+       width="71.4375"
+       height="44.979168"
+       x="2.6458335"
+       y="97.895836" />
     <rect
-       style="fill:#c6c4ed;fill-opacity:0.996255;stroke:none;stroke-width:0.54323;stroke-opacity:1"
+       style="fill:#c6c4ed;fill-opacity:0.996255;stroke:none;stroke-width:0.631479;stroke-opacity:1"
        id="placement_location-4"
-       width="60.937454"
-       height="39.021351"
-       x="205.79753"
-       y="29.934185" />
+       width="71.4375"
+       height="44.979168"
+       x="76.729172"
+       y="2.6458335" />
     <rect
-       style="fill:#c6c4ed;fill-opacity:0.996255;stroke:none;stroke-width:0.54323;stroke-opacity:1"
+       style="fill:#c6c4ed;fill-opacity:0.996255;stroke:none;stroke-width:0.631479;stroke-opacity:1"
        id="placement_location-5"
-       width="60.937454"
-       height="39.021351"
-       x="204.19392"
-       y="75.102737" />
+       width="71.4375"
+       height="44.979168"
+       x="76.729172"
+       y="50.270836" />
     <rect
-       style="fill:#c6c4ed;fill-opacity:0.996255;stroke:none;stroke-width:0.54323;stroke-opacity:1"
+       style="fill:#c6c4ed;fill-opacity:0.996255;stroke:none;stroke-width:0.631479;stroke-opacity:1"
        id="placement_location-6"
-       width="60.937454"
-       height="39.021351"
-       x="204.19392"
-       y="121.60764" />
+       width="71.4375"
+       height="44.979168"
+       x="76.729172"
+       y="97.895836" />
   </g>
 </svg>

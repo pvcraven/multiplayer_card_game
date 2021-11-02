@@ -61,7 +61,7 @@ class GameEngine:
             destination = data["destination"]
             placement = None
             for cur_placement in self.game_data["placements"]:
-                if cur_placement["name"] == destination:
+                if cur_placement["location"] == destination:
                     placement = cur_placement
             if not placement:
                 logging.debug(f"Did not find placement for {destination}.")

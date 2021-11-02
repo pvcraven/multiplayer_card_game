@@ -1,9 +1,12 @@
+import xml.etree.ElementTree as ElementTree
+import logging
 from typing import List
 from dataclasses import dataclass
-import xml.etree.ElementTree as ElementTree
 
 
 MM_TO_PX = 3.7795
+
+logging.basicConfig(level=logging.DEBUG)
 
 
 def convert_mm_to_px(mm: float):
@@ -38,12 +41,11 @@ def get_rect_info(rect: Rect, origin_x, origin_y, scale):
 
 def get_shape_at(svg, origin_x, origin_y, scale, target_x, target_y):
 
-    print("Click")
     for shape in svg.shapes:
         cx, cy, width, height = get_rect_info(shape, origin_x, origin_y, scale)
 
         if (cx - width / 2) <= target_x <= (cx + width / 2) and (cy - height / 2) <= target_y <= (cy + height / 2):
-            print(f"Yes: {shape.id}")
+            return shape
 
 
 def get_rect_for_name(svg, name: str):
@@ -59,7 +61,7 @@ def process_item(item: ElementTree, shapes: List, image_height: float):
     # Process groups
     if item.tag == "g":
         item_id = item.attrib['id']
-        print(f"Found group {item_id}.")
+        logging.debug(f"Found group {item_id}.")
         for child in item:
             process_item(child, shapes, image_height)
 
@@ -86,7 +88,7 @@ def process_item(item: ElementTree, shapes: List, image_height: float):
 
         # Create object and append to list
         rect = Rect(item_id, x, y, width, height, style_dict)
-        print(rect)
+        logging.debug(rect)
         shapes.append(rect)
 
 

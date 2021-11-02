@@ -59,6 +59,7 @@ class GameViewXML(arcade.View):
                     origin_x, origin_y, ratio = self.calculate_screen_data()
                     cx, cy, width, height = get_rect_info(rect, origin_x, origin_y, ratio)
                     sprite = arcade.Sprite(f"images/{item['image_name']}.png", ratio)
+                    sprite.properties['name'] = item['name']
                     sprite.position = cx, cy
                     self.piece_list.append(sprite)
                     logging.debug(f"Placed {item['location']} at ({cx}, {cy})")
@@ -154,5 +155,24 @@ class GameViewXML(arcade.View):
         if len(self.held_items) == 0:
             return
 
-        destination = "None"
+        origin_x, origin_y, scale = self.calculate_screen_data()
+        destination = get_shape_at(self.svg, origin_x, origin_y, scale, x, y)
+
+        if destination:
+            for item in self.held_items:
+                item_name = item.properties['name']
+                destination_name = destination.id
+                logging.debug(f"Move {item_name} to {destination_name}")
+
+                data = {"command": "move_piece",
+                        "name": item_name,
+                        "destination": destination_name}
+
+                self.window.communications_channel.send_queue.put(data)
+        else:
+            logging.debug(f"No item at dropped location")
+
+        for i, item in enumerate(self.held_items):
+            item.position = self.held_items_original_position[i]
+        self.held_items = []
 
