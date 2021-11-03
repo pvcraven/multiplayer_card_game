@@ -34,8 +34,8 @@
      units="px"
      inkscape:window-width="3067"
      inkscape:window-height="1670"
-     inkscape:window-x="560"
-     inkscape:window-y="96"
+     inkscape:window-x="724"
+     inkscape:window-y="192"
      inkscape:window-maximized="0"
      inkscape:pagecheckerboard="0"
      showguides="true"
@@ -127,14 +127,57 @@
        y="97.895836" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="4.5435824"
        y="179.33786"
        id="user_1_text"><tspan
          sodipodi:role="line"
-         id="tspan2653"
-         style="stroke-width:0.264583"
+         id="tspan1154"
          x="4.5435824"
-         y="179.33786">User 1</tspan></text>
+         y="179.33786">#users-0-name#</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:8.46667px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="20.257162"
+       y="191.64102"
+       id="text5016"><tspan
+         sodipodi:role="line"
+         style="stroke-width:0.264583"
+         x="20.257162"
+         y="191.64102"
+         id="tspan7611">Wood: #users-0-resources-0#</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:8.46667px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="20.257162"
+       y="202.0714"
+       id="text5016-4"><tspan
+         sodipodi:role="line"
+         style="stroke-width:0.264583"
+         x="20.257162"
+         y="202.0714"
+         id="tspan7611-4">Water: #users-0-resources-1#</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:8.46667px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="20.083529"
+       y="212.65886"
+       id="text5016-4-8"><tspan
+         sodipodi:role="line"
+         style="stroke-width:0.264583"
+         x="20.083529"
+         y="212.65886"
+         id="tspan7611-4-9">Stone: #users-0-resources-2#</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:8.46667px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="20.071127"
+       y="223.24219"
+       id="text5016-4-8-9"><tspan
+         sodipodi:role="line"
+         style="stroke-width:0.264583"
+         x="20.071127"
+         y="223.24219"
+         id="tspan7611-4-9-3">Iron: #users-0-resources-3#</tspan></text>
   </g>
 </svg>

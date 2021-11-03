@@ -8,6 +8,7 @@ from .layout_xml import get_shape_at
 from .layout_xml import get_rect_for_name
 from .layout_xml import Rect
 from .layout_xml import Text
+from .text_replacement import text_replacement
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -120,7 +121,11 @@ class GameViewXML(arcade.View):
                         arcade.draw_rectangle_outline(cx, cy, width, height, color, stroke_width)
             elif isinstance(shape, Text):
                 x, y = get_point_info(shape.x, shape.y, origin_x, origin_y, ratio)
-                arcade.draw_text(shape.text, x, y, arcade.color.BLACK, 24)
+                text = text_replacement(shape.text, self.window.game_data)
+                text_size_string = shape.style["font-size"]
+                text_size_string = text_size_string[:-2]
+                text_size_float = float(text_size_string) * 2.5 * ratio
+                arcade.draw_text(text, x, y, arcade.color.BLACK, text_size_float)
 
     def on_draw(self):
         arcade.start_render()
@@ -183,4 +188,3 @@ class GameViewXML(arcade.View):
         for i, item in enumerate(self.held_items):
             item.position = self.held_items_original_position[i]
         self.held_items = []
-
