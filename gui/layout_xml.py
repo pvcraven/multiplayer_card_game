@@ -31,12 +31,27 @@ class Rect:
     style: dict
 
 
+@dataclass
+class Text:
+    id: str
+    x: float
+    y: float
+    style: dict
+    text: str
+
+
 def get_rect_info(rect: Rect, origin_x, origin_y, scale):
     cx = (rect.x + rect.width / 2) * scale + origin_x
     cy = (rect.y - rect.height / 2) * scale + origin_y
     width = rect.width * scale
     height = rect.height * scale
     return cx, cy, width, height
+
+
+def get_point_info(x, y, origin_x, origin_y, scale):
+    cx = x * scale + origin_x
+    cy = y * scale + origin_y
+    return cx, cy
 
 
 def get_shape_at(svg, origin_x, origin_y, scale, target_x, target_y):
@@ -52,6 +67,15 @@ def get_rect_for_name(svg, name: str):
     for shape in svg.shapes:
         if shape.id == name:
             return shape
+
+
+def get_style_dict(style_string):
+    style_list = style_string.split(';')
+    style_dict = {}
+    for item in style_list:
+        name, value = item.split(':')
+        style_dict[name] = value
+    return style_dict
 
 
 def process_item(item: ElementTree, shapes: List, image_height: float):
@@ -76,12 +100,7 @@ def process_item(item: ElementTree, shapes: List, image_height: float):
         # Reverse y
         y = image_height - convert_mm_to_px(float(item.attrib['y']))
         # Style info
-        style_string = item.attrib['style']
-        style_list = style_string.split(';')
-        style_dict = {}
-        for item in style_list:
-            name, value = item.split(':')
-            style_dict[name] = value
+        style_dict = get_style_dict(item.attrib['style'])
 
         if "stroke-width" in style_dict:
             style_dict["stroke-width"] = convert_mm_to_px(float(style_dict["stroke-width"]))
@@ -90,6 +109,23 @@ def process_item(item: ElementTree, shapes: List, image_height: float):
         rect = Rect(item_id, x, y, width, height, style_dict)
         logging.debug(rect)
         shapes.append(rect)
+
+    elif item.tag == "text":
+        # Grab id
+        item_id = item.attrib['id']
+        # Coordinates
+        x = convert_mm_to_px(float(item.attrib['x']))
+        # Reverse y
+        y = image_height - convert_mm_to_px(float(item.attrib['y']))
+        # Style info
+        style_dict = get_style_dict(item.attrib['style'])
+
+        text_string = item.find("{http://www.w3.org/2000/svg}tspan").text
+
+        # Create object and append to list
+        text = Text(item_id, x, y, style_dict, text_string)
+        logging.debug(text)
+        shapes.append(text)
 
 
 def process_svg(filename):

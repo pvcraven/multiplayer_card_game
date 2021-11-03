@@ -125,5 +125,16 @@
        height="44.979168"
        x="76.729172"
        y="97.895836" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="4.5435824"
+       y="179.33786"
+       id="user_1_text"><tspan
+         sodipodi:role="line"
+         id="tspan2653"
+         style="stroke-width:0.264583"
+         x="4.5435824"
+         y="179.33786">User 1</tspan></text>
   </g>
 </svg>
