@@ -1,12 +1,13 @@
 import xml.etree.ElementTree as ElementTree
-import logging
 from typing import List
 from dataclasses import dataclass
+import logging
 
 
 MM_TO_PX = 3.7795
 
-logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
 
 
 def convert_mm_to_px(mm: float):
@@ -85,7 +86,7 @@ def process_item(item: ElementTree, shapes: List, image_height: float):
     # Process groups
     if item.tag == "g":
         item_id = item.attrib['id']
-        logging.debug(f"Found group {item_id}.")
+        logger.debug(f"Found group {item_id}.")
         for child in item:
             process_item(child, shapes, image_height)
 

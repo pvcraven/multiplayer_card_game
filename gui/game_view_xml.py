@@ -10,7 +10,8 @@ from .layout_xml import Rect
 from .layout_xml import Text
 from .text_replacement import text_replacement
 
-logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
 
 
 class GameViewXML(arcade.View):
@@ -24,6 +25,7 @@ class GameViewXML(arcade.View):
 
         # Pieces
         self.piece_list = arcade.SpriteList()
+        self.actions_list = arcade.SpriteList()
 
         # List of items we are dragging with the mouse
         self.held_items = []
@@ -54,10 +56,11 @@ class GameViewXML(arcade.View):
     def process_game_data(self, data):
 
         self.piece_list = arcade.SpriteList()
+        self.actions_list = arcade.SpriteList()
 
-        def process_items(items):
+        def process_items(items, sprite_list):
             for item in items:
-                logging.debug(f"{item['name']}, {item['location']}")
+                logger.debug(f"Placing {item['name']}, {item['location']}")
                 rect = get_rect_for_name(self.svg, item["location"])
                 if rect:
                     origin_x, origin_y, ratio = self.calculate_screen_data()
@@ -65,15 +68,20 @@ class GameViewXML(arcade.View):
                     sprite = arcade.Sprite(f"images/{item['image_name']}.png", ratio)
                     sprite.properties['name'] = item['name']
                     sprite.position = cx, cy
-                    self.piece_list.append(sprite)
-                    logging.debug(f"Placed {item['location']} at ({cx}, {cy})")
+                    sprite_list.append(sprite)
+                    logger.debug(f"Placed {item['name']} located at {item['location']} at ({cx}, {cy})")
                 else:
-                    logging.warning(f"Can't find location for {item['location']}")
+                    logger.warning(f"Can't find location for {item['location']}")
 
+        logger.debug(f"- Placements")
         placement_list = data["placements"]
-        process_items(placement_list)
+        process_items(placement_list, self.piece_list)
+        logger.debug(f"- Pieces")
         pieces_list = data["pieces"]
-        process_items(pieces_list)
+        process_items(pieces_list, self.piece_list)
+        logger.debug(f"- Actions")
+        pieces_list = data["action_items"]
+        process_items(pieces_list, self.actions_list)
 
     def calculate_screen_data(self):
         ratio_width, ratio_height = self.svg.width, self.svg.height
@@ -131,6 +139,7 @@ class GameViewXML(arcade.View):
         arcade.start_render()
         self.draw_layout()
         self.piece_list.draw()
+        self.actions_list.draw()
 
     def on_resize(self, width: float, height: float):
         self.process_game_data(self.window.game_data)
@@ -175,7 +184,7 @@ class GameViewXML(arcade.View):
             for item in self.held_items:
                 item_name = item.properties['name']
                 destination_name = destination.id
-                logging.debug(f"Move {item_name} to {destination_name}")
+                logger.debug(f"Move {item_name} to {destination_name}")
 
                 data = {"command": "move_piece",
                         "name": item_name,
@@ -183,7 +192,7 @@ class GameViewXML(arcade.View):
 
                 self.window.communications_channel.send_queue.put(data)
         else:
-            logging.debug(f"No item at dropped location")
+            logger.debug(f"No item at dropped location")
 
         for i, item in enumerate(self.held_items):
             item.position = self.held_items_original_position[i]

@@ -9,6 +9,9 @@ from gui.connect_view import ConnectView
 from server.server import Server
 from network.communications_channel import CommunicationsChannel
 
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+
 
 class ClientOrServerView(arcade.View):
 
@@ -69,7 +72,7 @@ class ClientOrServerView(arcade.View):
 
         @server_button.event("on_click")
         def on_click_settings(_event):
-            logging.debug(f"Starting server with user name {self.window.user_name}")
+            logger.debug(f"Starting server with user name {self.window.user_name}")
 
             server_address = get_ip_address()
             server_port = 10000
@@ -103,7 +106,7 @@ class ClientOrServerView(arcade.View):
             view = ConnectView()
             self.window.show_view(view)
             self.window.user_name = self.name_input_box.text
-            logging.debug(f"Starting server with user name {self.window.user_name}")
+            logger.debug(f"Starting server with user name {self.window.user_name}")
 
         self.gui_manager.add(client_button)
 

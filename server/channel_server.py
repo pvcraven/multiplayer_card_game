@@ -5,7 +5,8 @@ from network.constants import *
 from network.communications_channel import CommunicationsChannel
 
 
-logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
 
 
 class ChannelServer:
@@ -43,7 +44,7 @@ class ChannelServer:
             communications_channel.my_ip_port = self.my_ip_port
             communications_channel.current_state = CONNECTED
             self.channels.append(communications_channel)
-            logging.debug(f"Client {their_ip}:{their_port} connected...")
+            logger.debug(f"Client {their_ip}:{their_port} connected...")
             return communications_channel
 
         except BlockingIOError:

@@ -4,7 +4,8 @@ from gui.constants import *
 from game_engine.constants import *
 from game_engine.placements import placements
 
-logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
 
 
 class GameEngine:
@@ -14,6 +15,7 @@ class GameEngine:
                           "cards": [],
                           "pieces": [],
                           "placements": [],
+                          "action_items": [],
                           "view": "waiting_for_players"}
 
     def command_login(self, data, user_connection):
@@ -22,10 +24,10 @@ class GameEngine:
                 "resources": [0] * resource_count}
         user_connection.user_name = user_name
         self.game_data["users"].append(user)
-        logging.debug(f"Log in from  {user_connection.user_name}")
+        logger.debug(f"Log in from  {user_connection.user_name}")
 
     def command_logout(self, data, user_connection):
-        logging.debug(f"Logout from {user_connection.user_name}")
+        logger.debug(f"Logout from {user_connection.user_name}")
         self.game_data["users"].remove(user_connection.user_name)
 
     def process_data(self, data, user_connection):
@@ -53,6 +55,15 @@ class GameEngine:
                 placement["location"] = f"placement_location-{count}"
                 self.game_data["placements"].append(placement)
                 count += 1
+                for action in placement["actions"]:
+                    if action == "add-resource-0":
+                        image_name = "resources/resource-0"
+                    else:
+                        image_name = "resources/resource-1"
+                    action_item = {"name": "",
+                                   "image_name": image_name,
+                                   "location": f"placement_location-{count}-0"}
+                    self.game_data["action_items"].append(action_item)
 
             self.game_data["view"] = "game_view"
 
@@ -64,14 +75,14 @@ class GameEngine:
                 if cur_placement["location"] == destination:
                     placement = cur_placement
             if not placement:
-                logging.debug(f"Did not find placement for {destination}.")
+                logger.debug(f"Did not find placement for {destination}.")
 
             piece = None
             for cur_piece in self.game_data["pieces"]:
                 if cur_piece["name"] == data["name"]:
                     piece = cur_piece
             if not piece:
-                logging.debug(f"Did not find placement for {data['name']}.")
+                logger.debug(f"Did not find placement for {data['name']}.")
 
             player = None
             for cur_player in self.game_data["users"]:
@@ -82,7 +93,7 @@ class GameEngine:
 
             if piece and placement:
                 piece["location"] = placement["location"]
-                logging.debug(f"Moved piece to {destination}.")
+                logger.debug(f"Moved piece to {destination}.")
                 for action in placement["actions"]:
                     for i in range(0, resource_count):
                         if action == f"add-resource-{i}":

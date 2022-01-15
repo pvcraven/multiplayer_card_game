@@ -7,6 +7,7 @@
             0,
             0,
             0,
+            0,
             0
          ]
       }
@@ -35,66 +36,128 @@
       {
          "image_name":"placements/placement_1",
          "name":"placement-0",
-         "location":"placement_location-0",
          "actions":[
             "add-resource-0"
-         ]
+         ],
+         "location":"placement_location-0"
       },
       {
          "image_name":"placements/placement_1",
          "name":"placement-1",
-         "location":"placement_location-1",
          "actions":[
             "add-resource-1"
-         ]
+         ],
+         "location":"placement_location-1"
       },
       {
          "image_name":"placements/placement_1",
          "name":"placement-2",
-         "location":"placement_location-2",
          "actions":[
             "add-resource-2",
             "add-resource-2"
-         ]
+         ],
+         "location":"placement_location-2"
       },
       {
          "image_name":"placements/placement_1",
          "name":"placement-3",
-         "location":"placement_location-3",
          "actions":[
             "add-resource-3",
             "add-resource-3"
-         ]
+         ],
+         "location":"placement_location-3"
       },
       {
          "image_name":"placements/placement_1",
          "name":"placement-4",
-         "location":"placement_location-4",
          "actions":[
             "add-resource-2",
             "add-resource-3"
-         ]
+         ],
+         "location":"placement_location-4"
       },
       {
          "image_name":"placements/placement_1",
          "name":"placement-5",
-         "location":"placement_location-5",
          "actions":[
             "add-resource-4",
             "add-resource-4",
             "add-resource-4",
             "add-resource-4"
-         ]
+         ],
+         "location":"placement_location-5"
       },
       {
          "image_name":"placements/placement_1",
          "name":"placement-6",
-         "location":"placement_location-6",
          "actions":[
             "add-resource-2",
             "add-resource-4",
             "add-resource-4"
-         ]
+         ],
+         "location":"placement_location-6"
+      }
+   ],
+   "action_items":[
+      {
+         "image_name":"resources/resource-0",
+         "location":"placement_location-1-0"
+      },
+      {
+         "image_name":"resources/resource-1",
+         "location":"placement_location-2-0"
+      },
+      {
+         "image_name":"resources/resource-1",
+         "location":"placement_location-3-0"
+      },
+      {
+         "image_name":"resources/resource-1",
+         "location":"placement_location-3-0"
+      },
+      {
+         "image_name":"resources/resource-1",
+         "location":"placement_location-4-0"
+      },
+      {
+         "image_name":"resources/resource-1",
+         "location":"placement_location-4-0"
+      },
+      {
+         "image_name":"resources/resource-1",
+         "location":"placement_location-5-0"
+      },
+      {
+         "image_name":"resources/resource-1",
+         "location":"placement_location-5-0"
+      },
+      {
+         "image_name":"resources/resource-1",
+         "location":"placement_location-6-0"
+      },
+      {
+         "image_name":"resources/resource-1",
+         "location":"placement_location-6-0"
+      },
+      {
+         "image_name":"resources/resource-1",
+         "location":"placement_location-6-0"
+      },
+      {
+         "image_name":"resources/resource-1",
+         "location":"placement_location-6-0"
+      },
+      {
+         "image_name":"resources/resource-1",
+         "location":"placement_location-7-0"
+      },
+      {
+         "image_name":"resources/resource-1",
+         "location":"placement_location-7-0"
+      },
+      {
+         "image_name":"resources/resource-1",
+         "location":"placement_location-7-0"
       }
    ],
    "view":"game_view"

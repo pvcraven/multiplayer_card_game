@@ -3,7 +3,8 @@ import logging
 from server.channel_server import ChannelServer
 from game_engine import GameEngine
 
-logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
 
 
 class UserConnection:
@@ -14,7 +15,7 @@ class UserConnection:
 
 class Server:
     def __init__(self, my_ip_address, my_ip_port):
-        logging.debug(f"Starting to listen on {my_ip_address}:{my_ip_port}")
+        logger.debug(f"Starting to listen on {my_ip_address}:{my_ip_port}")
         self.channel_server = ChannelServer(my_ip_address=my_ip_address, my_ip_port=my_ip_port)
         self.channel_server.start_listening()
         self.user_connections = []
@@ -47,7 +48,7 @@ class Server:
 
                 # Grab the command out of the list and process
                 command = data["command"]
-                logging.debug(command)
+                logger.debug(command)
                 self.game.process_data(data, user_connection)
 
                 # The only command this thread cares about, disconnect
@@ -61,4 +62,4 @@ class Server:
 
         for user_connection in user_connections_to_remove:
             self.user_connections.remove(user_connection)
-            logging.debug(f"Done with logout from {user_connection.user_name}")
+            logger.debug(f"Done with logout from {user_connection.user_name}")

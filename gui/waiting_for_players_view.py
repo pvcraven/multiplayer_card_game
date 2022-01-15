@@ -4,7 +4,8 @@ import arcade.gui
 
 from gui.game_view_xml import GameViewXML
 
-logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
 
 
 class WaitingForPlayersView(arcade.View):
@@ -35,7 +36,7 @@ class WaitingForPlayersView(arcade.View):
 
             @start_button.event("on_click")
             def on_click_settings(_event):
-                logging.debug(f"Start game")
+                logger.debug(f"Start game")
                 data = {"command": "start_game"}
                 self.window.communications_channel.send_queue.put(data)
 
@@ -53,7 +54,7 @@ class WaitingForPlayersView(arcade.View):
             data = self.window.communications_channel.receive_queue.get()
             self.window.game_data = data
             if data["view"] == "game_view":
-                logging.debug("Message received, switching to game view.")
+                logger.debug("Message received, switching to game view.")
                 view = GameViewXML()
                 self.window.show_view(view)
 

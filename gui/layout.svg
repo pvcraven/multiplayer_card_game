@@ -33,10 +33,10 @@
      showgrid="false"
      units="px"
      inkscape:window-width="3067"
-     inkscape:window-height="1670"
-     inkscape:window-x="724"
-     inkscape:window-y="192"
-     inkscape:window-maximized="0"
+     inkscape:window-height="1666"
+     inkscape:window-x="694"
+     inkscape:window-y="229"
+     inkscape:window-maximized="1"
      inkscape:pagecheckerboard="0"
      showguides="true"
      inkscape:snap-global="false" />
@@ -56,33 +56,33 @@
      inkscape:groupmode="layer"
      id="layer1">
     <rect
-       style="fill:#c6e7ed;fill-opacity:0.996255;stroke:#000000;stroke-width:0.740833;stroke-opacity:1"
+       style="fill:#c6e7ed;fill-opacity:0.996255;stroke:#000000;stroke-width:0.814784;stroke-opacity:1"
        id="rect1098"
-       width="79.375"
-       height="52.916668"
-       x="3.7417734"
-       y="181.61" />
+       width="79.301048"
+       height="64.068039"
+       x="237.90686"
+       y="12.732638" />
     <rect
        style="fill:none;fill-opacity:0.996255;stroke:#000000;stroke-width:0.728015;stroke-opacity:1"
        id="playerpiece-0-0"
        width="12.501152"
        height="9.855319"
-       x="5.6556745"
-       y="182.92651" />
+       x="239.78378"
+       y="15.183459" />
     <rect
        style="fill:none;fill-opacity:0.996255;stroke:#000000;stroke-width:0.728015;stroke-opacity:1"
        id="playerpiece-0-1"
        width="12.501152"
        height="9.855319"
-       x="5.6556745"
-       y="194.83276" />
+       x="239.78378"
+       y="27.08971" />
     <rect
        style="fill:none;fill-opacity:0.996255;stroke:#000000;stroke-width:0.728015;stroke-opacity:1"
        id="playerpiece-0-2"
        width="12.501152"
        height="9.855319"
-       x="5.6556745"
-       y="206.73901" />
+       x="239.78378"
+       y="38.99596" />
     <rect
        style="fill:#c6c4ed;fill-opacity:0.996255;stroke:none;stroke-width:0.631478;stroke-opacity:1"
        id="placement_location-1"
@@ -128,56 +128,96 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
-       x="4.5435824"
-       y="179.33786"
+       x="237.60262"
+       y="10.156253"
        id="user_1_text"><tspan
          sodipodi:role="line"
          id="tspan1154"
-         x="4.5435824"
-         y="179.33786">#users-0-name#</tspan></text>
+         x="237.60262"
+         y="10.156253">#users-0-name#</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:8.46667px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
-       x="20.257162"
-       y="191.64102"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.46667px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="254.38527"
+       y="22.31049"
        id="text5016"><tspan
          sodipodi:role="line"
-         style="stroke-width:0.264583"
-         x="20.257162"
-         y="191.64102"
-         id="tspan7611">Wood: #users-0-resources-0#</tspan></text>
+         id="tspan886"
+         x="254.38527"
+         y="22.31049">Wizards: #users-0-resources-0#</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:8.46667px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
-       x="20.257162"
-       y="202.0714"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.46667px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="254.38527"
+       y="32.740864"
        id="text5016-4"><tspan
          sodipodi:role="line"
-         style="stroke-width:0.264583"
-         x="20.257162"
-         y="202.0714"
-         id="tspan7611-4">Water: #users-0-resources-1#</tspan></text>
+         id="tspan910"
+         x="254.38527"
+         y="32.740864">Clerics: #users-0-resources-1#</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:8.46667px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
-       x="20.083529"
-       y="212.65886"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.46667px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="254.21164"
+       y="43.328327"
        id="text5016-4-8"><tspan
          sodipodi:role="line"
-         style="stroke-width:0.264583"
-         x="20.083529"
-         y="212.65886"
-         id="tspan7611-4-9">Stone: #users-0-resources-2#</tspan></text>
+         id="tspan934"
+         x="254.21164"
+         y="43.328327">Fighters: #users-0-resources-2#</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:8.46667px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
-       x="20.071127"
-       y="223.24219"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.46667px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="254.19923"
+       y="53.911655"
        id="text5016-4-8-9"><tspan
          sodipodi:role="line"
-         style="stroke-width:0.264583"
-         x="20.071127"
-         y="223.24219"
-         id="tspan7611-4-9-3">Iron: #users-0-resources-3#</tspan></text>
+         id="tspan1182"
+         x="254.19923"
+         y="53.911655">Rogues: #users-0-resources-3#</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.46667px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="254.11633"
+       y="73.307465"
+       id="text5016-4-8-9-5"><tspan
+         sodipodi:role="line"
+         id="tspan1202"
+         x="254.11633"
+         y="73.307465">Points: #users-0-resources-5#</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.46667px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="254.19827"
+       y="63.617542"
+       id="text5016-4-8-9-2"><tspan
+         sodipodi:role="line"
+         id="tspan1162"
+         x="254.19827"
+         y="63.617542">Coins: #users-0-resources-4#</tspan></text>
+    <rect
+       style="fill:#c60bed;fill-opacity:0.996255;stroke:#000000;stroke-width:0.740833"
+       id="placement_location-0-0"
+       width="8.5526257"
+       height="7.2162771"
+       x="63.610149"
+       y="38.486813"
+       sodipodi:insensitive="true" />
+    <rect
+       style="fill:#710bed;fill-opacity:0.99625498;stroke:#000000;stroke-width:0.740833"
+       id="placement_location-0-0-0"
+       width="8.5526257"
+       height="7.2162771"
+       x="63.476517"
+       y="86.996239"
+       inkscape:label="placement_location-1-0" />
+    <rect
+       style="fill:none;fill-opacity:0.996255;stroke:#000000;stroke-width:0.740833"
+       id="placement_location-0-1"
+       width="8.5526257"
+       height="7.2162771"
+       x="51.31575"
+       y="38.486813"
+       sodipodi:insensitive="true" />
   </g>
 </svg>
