@@ -9,6 +9,7 @@ from .layout_xml import get_rect_for_name
 from .layout_xml import Rect
 from .layout_xml import Text
 from .text_replacement import text_replacement
+from .dimension_calculations import calculate_screen_data
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -21,6 +22,7 @@ class GameViewXML(arcade.View):
         """ Initializer """
         # Call the parent class initializer
         super().__init__()
+        logger.debug("GameViewXML.__init__")
         arcade.set_background_color(arcade.color.PAPAYA_WHIP)
 
         # Pieces
@@ -55,15 +57,20 @@ class GameViewXML(arcade.View):
 
     def process_game_data(self, data):
 
+        # Create new sprite lists
         self.piece_list = arcade.SpriteList()
         self.actions_list = arcade.SpriteList()
+
+        origin_x, origin_y, ratio = calculate_screen_data(self.svg.width, self.svg.height,
+                                                          self.window.width, self.window.height)
+        logger.debug(f"{self.svg.width=}, {self.svg.height=}, {self.window.width=}, {self.window.height=}")
+        logger.debug(f"{origin_x=}, {origin_y=}, {ratio=}")
 
         def process_items(items, sprite_list):
             for item in items:
                 logger.debug(f"Placing {item['name']}, {item['location']}")
                 rect = get_rect_for_name(self.svg, item["location"])
                 if rect:
-                    origin_x, origin_y, ratio = self.calculate_screen_data()
                     cx, cy, width, height = get_rect_info(rect, origin_x, origin_y, ratio)
                     sprite = arcade.Sprite(f"images/{item['image_name']}.png", ratio)
                     sprite.properties['name'] = item['name']
@@ -83,26 +90,10 @@ class GameViewXML(arcade.View):
         pieces_list = data["action_items"]
         process_items(pieces_list, self.actions_list)
 
-    def calculate_screen_data(self):
-        ratio_width, ratio_height = self.svg.width, self.svg.height
-        screen_width = self.window.width
-        screen_height = self.window.height
-
-        # Compare ratio to screen size, get the min so we can fit on screen
-        ratio = min(screen_width / ratio_width, screen_height / ratio_height)
-
-        # Get our display size based on this ratio
-        display_width = ratio * ratio_width
-        display_height = ratio * ratio_height
-
-        # Calculate our lower-left origin
-        origin_x = (screen_width - display_width) / 2
-        origin_y = (screen_height - display_height) / 2
-        return origin_x, origin_y, ratio
-
     def draw_layout(self):
 
-        origin_x, origin_y, ratio = self.calculate_screen_data()
+        origin_x, origin_y, ratio = calculate_screen_data(self.svg.width, self.svg.height,
+                                                          self.window.width, self.window.height)
         for shape in self.svg.shapes:
             if isinstance(shape, Rect):
 
@@ -141,7 +132,8 @@ class GameViewXML(arcade.View):
         self.piece_list.draw()
         self.actions_list.draw()
 
-    def on_resize(self, width: float, height: float):
+    def on_resize(self, width: int, height: int):
+        super().on_resize(width, height)
         self.process_game_data(self.window.game_data)
 
     def on_mouse_press(self, x, y, button, key_modifiers):
@@ -177,8 +169,9 @@ class GameViewXML(arcade.View):
         if len(self.held_items) == 0:
             return
 
-        origin_x, origin_y, scale = self.calculate_screen_data()
-        destination = get_shape_at(self.svg, origin_x, origin_y, scale, x, y)
+        origin_x, origin_y, ratio = calculate_screen_data(self.svg.width, self.svg.height,
+                                                          self.window.width, self.window.height)
+        destination = get_shape_at(self.svg, origin_x, origin_y, ratio, x, y)
 
         if destination:
             for item in self.held_items:

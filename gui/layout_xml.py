@@ -144,8 +144,8 @@ def process_svg(filename):
     return svg
 
 
-def main():
-    process_svg('gui/layout.svg')
-
-
-main()
+# def main():
+#     process_svg('gui/layout.svg')
+#
+#
+# main()

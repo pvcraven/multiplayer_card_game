@@ -1,3 +1,4 @@
+from .dimension_calculations import calculate_screen_data
 from .game_window import GameWindow
 from .connect_view import ConnectView
 from .game_view_xml import GameViewXML
